@@ -1,0 +1,30 @@
+{
+  "name": "rutyemarllon",
+  "version": "1.0.0",
+  "description": "Site backend",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RutyRibeiro/rutyemarllon.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RutyRibeiro/rutyemarllon/issues"
+  },
+  "homepage": "https://github.com/RutyRibeiro/rutyemarllon#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.0",
+    "typescript": "^5.7.3"
+  }
+}
