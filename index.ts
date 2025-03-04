@@ -1,3 +1,4 @@
+import { Prisma, PrismaClient} from '@prisma/client';
 import express, { Response } from 'express';
 import cors from 'cors';
 import { configDotenv } from 'dotenv';
@@ -8,7 +9,11 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.get('/', (_, res: Response) => {
+app.get('/', async (_, res: Response) => {
+    const prisma = new PrismaClient();
+    const products = prisma.product;
+    const x = await products.findMany()
+    console.log(x);
     res.send('Server Working Just Fine');
   });
 

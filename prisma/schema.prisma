@@ -1,0 +1,19 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+// prisma/schema.prisma
+datasource db {
+  provider  = "postgresql"
+  url  	    = env("DATABASE_URL")
+}
+
+model Product {
+  @@map("products")
+  id            Int      @id @default(autoincrement())
+  name          String
+  description   String      
+  imageurl      String  
+  createdat DateTime @default(now()) @map("created_at")
+  updatedat DateTime @default(now()) @map("updated_at")
+}
