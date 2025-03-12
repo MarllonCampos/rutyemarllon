@@ -38,4 +38,22 @@ const findReserved = async (req: Request, res: Response) => {
     res.json({"message": items});
 }
 
-export { index, findItems, findReserved }
+const reserve = async (req: Request, res: Response) => {
+    const prisma = new PrismaClient();
+    const products = prisma.product;
+    const items = await products.updateManyAndReturn({
+        where:{
+            id:{
+                in: req.body.id
+            }
+        },
+        data:{
+            reserved: true,
+            reservedPeopleId: req.body.peopleId
+        }
+    })
+    
+    res.json({message: "Itens reservados", data: items.map(item => item.name)});
+}
+
+export { index, findItems, findReserved, reserve }
