@@ -2,6 +2,7 @@ import express, { Response, Router } from 'express';
 import cors from 'cors';
 import { configDotenv } from 'dotenv';
 import { items } from './routes/items'
+import { people } from './routes/people'
 
 configDotenv();
 const app = express();
@@ -17,6 +18,7 @@ app.get('/', async (_, res: Response) => {
 );
 
 routes.use('/items', items )
+routes.use('/people', people )
 
 app.use(routes);
 
