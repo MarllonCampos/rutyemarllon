@@ -1,6 +1,7 @@
 import { Prisma, PrismaClient} from '@prisma/client';
 
 import { Request, Response } from 'express';
+import { sendMessage } from '../services/sendWhatsapp';
 
 const index = async (_:any, res: Response) => {
     const prisma = new PrismaClient();
@@ -52,7 +53,6 @@ const reserve = async (req: Request, res: Response) => {
             reservedPeopleId: req.body.peopleId
         }
     })
-    
     res.json({message: "Itens reservados", data: items.map(item => item.name)});
 }
 

@@ -22,17 +22,19 @@
   "homepage": "https://github.com/RutyRibeiro/rutyemarllon#readme",
   "dependencies": {
     "@prisma/client": "^6.5.0",
+    "axios": "^1.8.3",
     "cors": "^2.8.5",
     "csv-parser": "^3.2.0",
     "dotenv": "^16.4.7",
-    "express": "^4.21.2"
+    "express": "^4.21.2",
+    "twilio": "^5.5.0"
   },
   "devDependencies": {
     "@types/cors": "^2.8.17",
     "@types/express": "^5.0.0",
     "prisma": "^6.5.0",
     "ts-node-dev": "^2.0.0",
-    "typescript": "^5.7.3"
+    "typescript": "^5.8.2"
   },
   "prisma": {
     "seed": "ts-node prisma/seed.ts"
