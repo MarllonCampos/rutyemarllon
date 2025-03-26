@@ -19,12 +19,13 @@ const sendMessage = async ({items, receiverName, to}:SendMessageInterface) => {
     const message = await client.messages
       .create({
         from,
-        to,
+        to:`whatsapp:${to}`,
         contentSid,
         contentVariables: JSON.stringify({1:receiverName, 2:items})
       })
     return message
   } catch (error) {
+    console.log(error)
     throw new Error(`Erro ao enviar mensagem para o whatsApp: ${to}`)
   } 
 }
