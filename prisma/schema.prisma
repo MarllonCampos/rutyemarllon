@@ -34,3 +34,17 @@ model People {
 
   @@map("people")
 }
+
+model Attendance {
+  id           Int          @id @default(autoincrement())
+  name         String
+  whatsApp     String?
+  comingWithId Int? // Campo opcional para armazenar o ID de quem a pessoa está vindo
+  comingWith   Attendance?  @relation("AttendanceToAttendance", fields: [comingWithId], references: [id])
+  guests       Attendance[] @relation("AttendanceToAttendance")
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @map("updated_at")
+
+  @@map("attendance")
+}
