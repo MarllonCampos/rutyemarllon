@@ -34,6 +34,15 @@ const createPerson = async (req: Request, res: Response) => {
   const prisma = new PrismaClient();
   const peoples = prisma.people;
 
+  const personExists = await peoples.findFirst({
+    where: {
+      whatsApp: req.body.whatsapp,
+    },
+  });
+  if (personExists) {
+    return res.status(202).json({ message: 'Usuário já cadastrado', data: { ...personExists } });
+  }
+
   const person = await peoples.create({
     data: {
       whatsApp: req.body.whatsapp,

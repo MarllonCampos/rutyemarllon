@@ -1,4 +1,4 @@
-import { Prisma, PrismaClient } from '@prisma/client';
+import { PrismaClient } from '@prisma/client';
 
 import { NextFunction, Request, Response } from 'express';
 import { sendMessage } from '../services/sendWhatsapp';
@@ -7,7 +7,9 @@ import { formatMessage } from '../services/formatMessage';
 const index = async (_: any, res: Response) => {
   const prisma = new PrismaClient();
   const products = prisma.product;
-  const items = await products.findMany();
+  const items = await products.findMany({
+    orderBy: [{ reserved: 'asc' }, { name: 'asc' }],
+  });
 
   res.json({ message: items });
 };
