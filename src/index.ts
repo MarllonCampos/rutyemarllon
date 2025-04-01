@@ -8,7 +8,7 @@ configDotenv();
 const isProduction = process.env.NODE_ENV === 'production';
 const corsOptions: CorsOptions | CorsOptionsDelegate = {
   origin: isProduction
-    ? ['https://dev.marlloneruty.com.br', 'https://marlloneruty.com.br']
+    ? ['https://dev.marlloneruty.com.br', 'https://marlloneruty.com.br', 'https://www.marlloneruty.com.br/']
     : (origin, callback) => {
         if (!origin || origin.startsWith('http://localhost') || origin.startsWith('http://127.0.0.1')) {
           callback(null, true);
