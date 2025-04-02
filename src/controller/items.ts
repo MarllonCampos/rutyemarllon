@@ -42,9 +42,34 @@ const findReserved = async (req: Request, res: Response) => {
   res.json({ message: items });
 };
 
-const reserve = async (req: Request, res: Response, next: NextFunction) => {
+const reserve = async (req: Request, res: Response) => {
   const prisma = new PrismaClient();
   const products = prisma.product;
+
+  const alreadyReservedItems = await products.findMany({
+    where: {
+      id: {
+        in: req.body.id,
+      },
+      reserved: true,
+    },
+    select: {
+      id: true,
+      name: true,
+    },
+  });
+
+  if (alreadyReservedItems.length > 0) {
+    // Retornar erro com os produtos já reservados
+    return res.status(422).json({
+      message: 'Alguns produtos selecionados já estão reservados.',
+      reservedItems: alreadyReservedItems.map((item) => ({
+        id: item.id,
+        name: item.name,
+      })),
+    });
+  }
+
   const items = await products.updateManyAndReturn({
     where: {
       id: {
